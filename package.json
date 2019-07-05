@@ -1,0 +1,39 @@
+{
+  "name": "react-sample",
+  "version": "0.0.1",
+  "description": "フロントエンドアプリケーション",
+  "main": "./public/main.js",
+  "scripts": {
+    "build:dev": "webpack --mode development",
+    "build:prod": "webpack --mode production",
+    "start": "webpack-dev-server --hot --inline --watch-content-base --content-base public/ --open-page ."
+  },
+  "author": "Cyber-Rock",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "classnames": "^2.2.6",
+    "material-ui": "^0.20.2",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "react-redux": "^7.0.3",
+    "react-router-dom": "^5.0.1",
+    "redux-saga": "^1.0.3"
+  },
+  "devDependencies": {
+    "@material-ui/core": "^4.1.0",
+    "@types/axios": "^0.14.0",
+    "@types/classnames": "^2.2.9",
+    "@types/material-ui": "^0.21.6",
+    "@types/react": "^16.4.18",
+    "@types/react-dom": "^16.0.9",
+    "@types/react-redux": "^7.0.9",
+    "@types/react-router-dom": "^4.3.4",
+    "@types/redux-saga": "^0.10.5",
+    "ts-loader": "^6.0.3",
+    "typescript": "^3.1.6",
+    "webpack": "^4.25.0",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.7.2"
+  }
+}
