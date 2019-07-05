@@ -1,0 +1,23 @@
+
+{
+    "compilerOptions": {
+      "strictBindCallApply": true,
+      "strictNullChecks": true,
+      "noUnusedLocals" : true,
+      "noImplicitThis": true,
+      "noUnusedParameters": true,
+      "alwaysStrict": true,
+      "noImplicitAny": true,
+      "strictFunctionTypes": true,
+      "strictPropertyInitialization": true,
+      "noImplicitReturns": true,
+      "noFallthroughCasesInSwitch": true,
+      "moduleResolution": "node",
+      "outDir": "./public/",
+      "sourceMap": true,
+      "lib": ["dom", "es2017"],
+      "module": "ES2015",
+      "target": "es5",
+      "jsx": "react" 
+    }
+}
