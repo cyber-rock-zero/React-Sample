@@ -83,14 +83,14 @@ const styles = (theme: Theme) => createStyles({
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
-        //width: theme.spacing.uni * 7,
+        width: theme.spacing(7),
         [theme.breakpoints.up('sm')]: {
-            //width: theme.spacing.unit * 9,
-        }
+            width: theme.spacing(9),
+        },
     },
     main: {
         flexGrow: 1,
-        padding: 10 ,
+        padding: theme.spacing(3),
         overflow: 'auto',
     },
     appBarSpacer: theme.mixins.toolbar
