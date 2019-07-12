@@ -78,24 +78,24 @@ class SkillList extends React.Component<SkillListProps, SkillListState> {
  * スタイルを定義します。
  */
 const styles = (theme: Theme) => createStyles({
-   paper: {
-       width: '100%',
+    paper: {
+        width: '100%',
+        overflowX: 'auto'
+    },
+    tableWrapper: {
        overflowX: 'auto'
-   },
-   tableWrapper: {
-       overflowX: 'auto'
-   },
-   table: {
+    },
+    table: {
        minWidth: 700
-   },
-   row: {
+    },
+    row: {
        '&:nth-of-type(odd)': {
-           backgroundColor: theme.palette.background.default,
-       }
-   },
-   button: {
-       //margin: theme.spacing.unit
-   }
+            backgroundColor: theme.palette.background.default,
+        }
+    },
+    button: {
+        //margin: theme.spacing.unit
+    }
 });
 
 /**
