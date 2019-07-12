@@ -1,19 +1,22 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
-import classNames from 'classnames';
+import clsx from 'clsx';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { 
     AppBar
   , Button
   , createStyles
+  , Drawer
   , Dialog
   , DialogActions
   , DialogContent
   , DialogContentText
   , DialogTitle
-  , Drawer
   , Divider
   , IconButton
   , List
+  , ListItem
+  , ListItemIcon
+  , ListItemText
   , Menu
   , MenuItem 
   , Toolbar
@@ -22,9 +25,10 @@ import {
   , WithStyles
   , withStyles
 } from '@material-ui/core';
-import ListItem from '@material-ui/core/ListItem';
-//import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import CategoryIcon from '@material-ui/icons/Category';
 import SkillList from './Container';
 
 const drawerWidth = 240;
@@ -139,7 +143,7 @@ class MenuLayout extends React.Component<MenuLayoutProps, {}> {
     private handleLogoutOpen = () => {
         this.setState({ logoutOpen: true });
     };
-    
+        
     /**
      * ログアウトクローズハンドラ用プロパティです。
      */
@@ -162,23 +166,22 @@ class MenuLayout extends React.Component<MenuLayoutProps, {}> {
         const { classes } = this.props;
         const { menu, anchorEl } = this.state;
         const accountOpen = Boolean(anchorEl);
+        const iconAriaOwns = accountOpen ? 'menu-appbar' : undefined;
         return (
             <React.Fragment>
+                <CssBaseline />
                 <div className={classes.root}>
-                    <AppBar position="absolute" className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
+                    <AppBar position="absolute" className={clsx(classes.appBar, this.state.open && classes.appBarShift)}>
                         <Toolbar disableGutters={!this.state.open} className={classes.toolbar}>
                             <IconButton color="inherit" aria-label="Open drawer" onClick={this.handleDrawerOpen}
-                                className={classNames(classes.menuButton, this.state.open && classes.menuButtonHidden)}>
+                                className={clsx(classes.menuButton, this.state.open && classes.menuButtonHidden)}>
+                                <MenuIcon />
                             </IconButton>
                             <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>サンプル</Typography>
-                            <IconButton
-                                aria-owns={accountOpen ? 'menu-appbar' : undefined}
-                                aria-haspopup="true"
-                                onClick={this.handleAccountMenu}
-                                color="inherit">
+                            <IconButton aria-owns={iconAriaOwns} aria-haspopup="true" onClick={this.handleAccountMenu} color="inherit">
+                                <AccountCircle />
                             </IconButton>
-                            <Menu
-                                id="menu-appbar"
+                            <Menu id="menu-appbar"
                                 anchorEl={anchorEl}
                                 anchorOrigin={{
                                     vertical: 'top',
@@ -188,9 +191,7 @@ class MenuLayout extends React.Component<MenuLayoutProps, {}> {
                                     vertical: 'top',
                                     horizontal: 'right',
                                 }}
-                                open={accountOpen}
-                                onClose={this.handleAccountMenuClose}
-                            >
+                                open={accountOpen} onClose={this.handleAccountMenuClose}>
                                 <MenuItem onClick={this.handleAccountMenuClose}>設定</MenuItem>
                                 <MenuItem onClick={this.handleLogoutOpen}>ログアウト</MenuItem>
                             </Menu>
@@ -210,28 +211,27 @@ class MenuLayout extends React.Component<MenuLayoutProps, {}> {
                                     <Button onClick={this.handleLogoutClose} color="primary">
                                     いいえ
                                     </Button>
-                                    <Link to="/login">
-                                        <Button color="primary" autoFocus>
-                                        はい
-                                        </Button>
-                                    </Link>
+                                    <Button color="primary" autoFocus>
+                                    はい
+                                    </Button>
                                 </DialogActions>
                             </Dialog>
                         </Toolbar>
                     </AppBar>
-                    <Drawer variant="permanent"
-                        classes={{
-                            paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
+                    <Drawer variant="permanent" classes={{
+                            paper: clsx(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
                         }}
                         open={this.state.open}>
                         <div className={classes.toolbarIcon}>
                             <IconButton onClick={this.handleDrawerClose}>
+                                <ChevronLeftIcon />
                             </IconButton>
                         </div>
                         <Divider />
                         <List>
                             <div>
                                 <ListItem button onClick={this.handleMenuClick('SkillList')}>
+                                    <ListItemIcon><CategoryIcon /></ListItemIcon>
                                     <ListItemText>スキル</ListItemText>
                                 </ListItem>
                             </div>
