@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { successSearchSkill, fetchRequestStart, fetchRequestFinish } from './skillListActionCreator';
+import { selectType, successSearchSkill } from './skillListActionCreator';
 import { API } from '../api';
 import { connect } from 'react-redux';
 import SkillList from './SkillList';
@@ -19,13 +19,11 @@ export class ActionDispatcher {
      * スキルの取得
      */
     public async getSkill(): Promise<void> {
-        this.dispatch(fetchRequestStart());
         try {
             let api = new API();
             const list = await api.getSkillList();
             this.dispatch(successSearchSkill(list));
         } catch (e) {
-            this.dispatch(fetchRequestFinish());
         }
     }
 
@@ -35,6 +33,13 @@ export class ActionDispatcher {
     public resetSkill(): void {
         const list: Array<Skill> = [];
         this.dispatch(successSearchSkill(list));
+    }
+
+    /**
+     * タイプ選択
+     */
+    public selectType(name: String, checked: boolean): void {
+        this.dispatch(selectType(name, checked));
     }
 }
 

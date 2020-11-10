@@ -9,7 +9,8 @@ export enum ActionNames {
     SUCCESS_SCH = 'list/success_search',
     FAILURE_SCH = 'list/failure_search',
     FETCH_REQUEST_START = 'list/fetch_request_start',
-    FETCH_REQUEST_FINISH = 'counter/fetch_request_finish'
+    FETCH_REQUEST_FINISH = 'counter/fetch_request_finish',
+    SELECT_TYPE = 'list/select_type'
 }
 
 /**
@@ -17,11 +18,13 @@ export enum ActionNames {
  */
 export interface SearchAction extends Action {
     type: ActionNames.SCH,
+    typeChecks : any,
     result : Array<Skill>
 }
 
-export const searchSkill = (list: Array<Skill>): SearchAction => ({
+export const searchSkill = (checks: any, list: Array<Skill>): SearchAction => ({
     type: ActionNames.SCH,
+    typeChecks : checks,
     result: list
 })
   
@@ -77,4 +80,19 @@ export interface FetchRequestFinishAction extends Action {
  */
 export const fetchRequestFinish = (): FetchRequestFinishAction => ({
     type: ActionNames.FETCH_REQUEST_FINISH
+})
+
+/**
+ * タイプ選択アクション
+ */
+export interface SelectTypeAction extends Action {
+    type: ActionNames.SELECT_TYPE,
+    name: String,
+    checked: boolean
+}
+
+export const selectType = (name: String, checked: boolean): SelectTypeAction => ({
+    type: ActionNames.SELECT_TYPE,
+    name: name,
+    checked: checked
 })
